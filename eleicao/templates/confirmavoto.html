@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Eleição Conselho de Ética - HUC
+{% endblock %}
+
+<div class="container text-center">
+  {% block content %}
+    <div class="card">
+      <img class="card-img-top img-fluid" src="../static/assets/logo.png" alt="Imagem de capa do card" />
+      <div class="card-body">
+        <h5 class="card-title fs-3">Eleições Comitê de Ética</h5>
+        <p class="card-text">Verifique seu VOTO antes de confirmar</p>
+        <hr />
+        <h6>CPF......:&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:green"></b> {{ eleitor.cpf }}</h6>
+        <h6>Nome.:&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:green"></b> {{ eleitor.nome }}</h6>
+        {% if eleitor.voto == 'C1' %}
+          <h6>Voto....:&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:green"></b>CHAPA 1</h6>
+        {% endif %}
+        {% if eleitor.voto == 'br' %}
+          <h6>Voto....:&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:coral"></b>BRANCO</h6>
+        {% endif %}
+        {% if eleitor.voto == 'nu' %}
+          <h6>Voto....:&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:coral"></b>NULO</h6>
+        {% endif %}
+        <form class="form-signin" method="post" action="{% url 'final' %}" enctype="multipart/form-data">
+          {% csrf_token %}
+          <input type="hidden" name="cpf" value="{{ eleitor.cpf }}" />
+          <input type="hidden" name="voto" value="{{ eleitor.voto }}" />
+          <hr />
+          <button class="btn btn-success" type="submit">Confirmar VOTO</button>
+          <a href="{% url 'votacao' %}" class="btn btn-primary">Voltar</a>
+        </form>
+      </div>
+    </div>
+  {% endblock %}
+</div>

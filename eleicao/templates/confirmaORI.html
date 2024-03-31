@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Eleição Conselho de Ética - HUC
+{% endblock %}
+
+<div class="container text-center">
+  {% block content %}
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <!-- <h1>{% if request.path == '/post-create' %}Autenticar{% else %}Atualizar Post{% endif %}</h1> -->
+
+        <h6>CPF: {{ eleitor.cpf }}</h6><br />
+        <h6>Nome: {{ eleitor.nome }}</h6><br />
+        <a href="{% url 'votacao' %}" class="btn btn-success">Confirmar e votar</a>
+        <a href="{% url 'home' %}" class="btn btn-primary">Voltar</a>
+      </div>
+    </div>
+  {% endblock %}
+</div>
