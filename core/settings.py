@@ -38,6 +38,8 @@ DEBUG = True
 ALLOWED_HOSTS = ['127.0.0.1','10.0.2.15']
 #ALLOWED_HOSTS = ['127.0.0.1','192.168.10.15','first-django.dev']
 
+os.path.append('/srv/eleicao') 
+os.path.append('/srv/eleicao/venv/Lib/site-packages')
 
 # Application definition
 
